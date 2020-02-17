@@ -1,5 +1,5 @@
 theory Find
-  imports Complex_Main
+  imports Main
 begin
 
 section \<open>Find theorems with @{command find_theorems}\<close>
@@ -24,11 +24,11 @@ text \<open>
   The example below uses intro to search for introduction rules that solve the current goal.
   For the given goal, @{command find_theorems} finds the lemma @{thm bij_betw_byWitness} which we instantiate accordingly.
   Then, we solve the the first two subgoals with @{method simp_all}.
-  This leaves us with two subgoals: @{prop \<open>(\<lambda>x. x + 1) ` \<int> \<subseteq> \<int>\<close>} and @{prop \<open>(\<lambda>x. x + 1) ` \<int> \<subseteq> \<int>\<close>}.
+  This leaves us with two subgoals: @{prop \<open>(\<lambda>x. x + 1) ` \<int> \<subseteq> \<int>\<close>} and @{prop \<open>(\<lambda>x. x - 1) ` \<int> \<subseteq> \<int>\<close>}.
   Searching with intro returns a lot of theorems since @{verbatim \<open>\<subseteq>\<close>} often occurs in the conclusion of theorems.
   To filter out irrelevant theorems, we pass the goal as a pattern with the appropriate wildcards.
   Then, @{command find_theorems} gives us the lemma @{thm image_subsetI} with which we can solve the remaining goals.
-  Apart from intro, there is also elim, dest, and solves which work analogously.
+  In addition to intro, there is also elim, dest, and solves which work analogously.
 \<close>
 lemma "bij_betw (\<lambda>x. x + 1) \<int> \<int>"
   find_theorems intro
@@ -48,13 +48,28 @@ find_theorems simp: "rev (rev _)"
 
 
 section \<open>Find constants with @{command find_consts}\<close>
-
+text \<open>
+  Finding constants (e.g. functions or definitions) can be done with the @{command find_consts}.
+  As with @{command find_theorems}, you can search for constants by name as seen below.
+\<close>
 find_consts name: metric
 
+text \<open>
+  Perhaps more useful than searching constants by name, it is possible to search them by type.
+  The default search returns all constants which contain the given type pattern.
+  If you are only interested in exact matches, then you can use the strict annotation.
+  The example below illustrates this behaviour: the first search returns functions @{term_type List.replicate} while the second only returns @{term_type List.subseqs} (and some functions from @{theory HOL.Quickcheck_Narrowing}).
+\<close>
 find_consts "'a \<Rightarrow> 'a list"
 find_consts strict: "'a \<Rightarrow> 'a list"
 
+text \<open>
+  We can also use wildcards and negated patterns.
+\<close>
 find_consts strict: "_ \<Rightarrow> 'a list \<Rightarrow> _ list"
 find_consts strict: "_ \<Rightarrow> 'a list \<Rightarrow> _ list" -"('a \<times> 'b) list"
 
+text \<open>
+  Finally, type variables can also have class constraints.
+\<close>
 find_consts "('a::ord) list \<Rightarrow> ('a::ord) list"
