@@ -32,7 +32,7 @@ text \<open>
   To filter out irrelevant theorems, we pass the goal as a pattern with the appropriate wildcards.
   Then, @{command find_theorems} gives us the lemma @{thm image_subsetI} with which we can solve the
   remaining goals.
-  In addition to intro, there is also elim, dest, and solves which work analogously.
+  In addition to \<open>intro\<close>, there are also \<open>elim\<close>, \<open>dest\<close>, and \<open>solves\<close> which work analogously.
 \<close>
 lemma "bij_betw (\<lambda>x. x + 1) \<int> \<int>"
   find_theorems intro
@@ -44,7 +44,7 @@ lemma "bij_betw (\<lambda>x. x + 1) \<int> \<int>"
   done
 
 text \<open>
-  To search for theorems that simplify a given term, one can pass simp and a term to
+  To search for theorems that simplify a given term, one can pass \<open>simp\<close> and a term to
   @{command find_theorems}.
   In the example below, @{command find_theorems} returns the lemma @{thm rev_rev_ident} with which 
   we can rewrite @{term \<open>rev (rev xs)\<close>} to @{term \<open>xs\<close>}.
