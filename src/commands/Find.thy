@@ -4,7 +4,7 @@ begin
 
 section \<open>Find theorems with @{command find_theorems}\<close>
 text \<open>
-  Theorems can be searched by name where @{verbatim *} wildcards are allowed.
+  Theorems can be searched by name where ▩‹*› wildcards are allowed.
   One of the theorems found with the query below is @{thm gauss_sum_nat}.
 \<close>
 find_theorems name: "gau*"
