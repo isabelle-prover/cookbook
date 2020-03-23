@@ -64,8 +64,33 @@ lemma
   apply (auto elim: finite_subset[rotated])
   done
 
+
+section \<open>Finiteness With Context\<close>
+text \<open>The theorem @{thm finite_Collect_bounded_ex} (and its obvious \<open>n\<close>-ary generalizations)
+can be highly useful for proving finiteness of sets where some of the finiteness theorems
+one wants to apply rely on a precondition to hold. Consider the following example:\<close>
+lemma
+  "finite {s'. \<exists>s. Some s = x \<and> Some s' = g s}" \<comment> \<open>Clearly there is at most one such \<open>s'\<close>.\<close>
+proof -
+  \<comment> \<open>The statement follows quite immediately from this lemma.\<close>
+  have Some_finite: "finite {x. Some x = y}" for y :: "'x option"
+    using not_finite_existsD by fastforce
+  show ?thesis
+    \<comment> \<open>Something like this will not work, however:\<close>
+    \<comment> \<open>apply (auto intro: Some_finite)\<close>
+    \<comment> \<open>The reason is that we need \<^emph>\<open>context\<close>.
+    The argument should go along the lines: there are only finitely such \<open>s\<close>,
+    and for each \<open>s\<close> there are only finitely many such \<open>s'\<close>, thus the whole set is finite.\<close>
+    apply (subst finite_Collect_bounded_ex) \<comment> \<open>this gives us what we want\<close>
+    apply (intro allI impI Some_finite)+
+    done
+qed
+
+
 section \<open>Further Pointers\<close>
 text \<open>For more examples and an attempt at an proof method for finiteness proof obligations,
-see \<^url>\<open>https://github.com/wimmers/isabelle-finite\<close>.\<close>
+see \<^url>\<open>https://github.com/wimmers/isabelle-finite\<close>.
+It also contains the \<open>n\<close>-ary generalizations of @{thm setcompr_eq_image}
+and @{thm finite_Collect_bounded_ex}.\<close>
 
 end
