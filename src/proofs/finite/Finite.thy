@@ -67,7 +67,7 @@ lemma
   done
 
 
-section \<open>Finiteness With Context\<close>
+subsection \<open>Finiteness With Context\<close>
 text \<open>The theorem @{thm finite_Collect_bounded_ex} (and its obvious \<open>n\<close>-ary generalizations)
 can be highly useful for proving finiteness of sets where some of the finiteness theorems
 one wants to apply rely on a precondition to hold. Consider the following example:\<close>
@@ -89,7 +89,7 @@ proof -
 qed
 
 
-section \<open>Proving Finiteness With the Simplifier\<close>
+subsection \<open>Advanced Examples Of Proving Finiteness With the Simplifier\<close>
 
 text \<open>The simplifier can sometimes be surprisingly good at solving finiteness goals.
 Here is an example:\<close>
