@@ -16,6 +16,7 @@ lemma "finite (r\<inverse>) = finite r"
   apply simp \<comment> \<open>The set was rewritten to an application of @{term image}.\<close>
   by (auto elim: finite_imageD simp: inj_on_def)
 
+
 section \<open>Lemmas For Proving Finiteness of Sets\<close>
 text \<open>
   For automated proofs, it can often help to just pass these with the \<^verbatim>\<open>intro\<close> modifier
@@ -27,6 +28,7 @@ lemmas finite_helpers = finite_imageI finite_subset
 
 
 section \<open>Tuning The Simplifier For Finiteness Proofs\<close>
+
 subsection \<open>Rewriting to Images\<close>
 text \<open>
   One useful technique is to rewrite set comprehensions to images of sets under functions as far as
@@ -85,6 +87,55 @@ proof -
     apply (intro allI impI Some_finite)+
     done
 qed
+
+
+section \<open>Proving Finiteness With the Simplifier\<close>
+
+text \<open>The simplifier can sometimes be surprisingly good at solving finiteness goals.
+Here is an example:\<close>
+lemma
+  assumes "finite A" "finite (Collect P)"
+  shows "finite {(a,b,c) | a b c. a \<in> A \<and> b < (n :: nat) \<and> P c}"
+  using assms [[simproc add: finite_Collect]] by simp
+
+text \<open>This shows what is going on here:\<close>
+lemma
+  assumes "finite A" "finite (Collect P)"
+  shows "finite {(a,b,c) | a b c. a \<in> A \<and> b < (n :: nat) \<and> P c}"
+  using [[simproc add: finite_Collect]] apply simp
+  apply (intro finite_SigmaI finite_Collect_less_nat assms)
+  done
+
+text \<open>A slightly more complicated variant:\<close>
+lemma
+  assumes "finite A" "finite (Collect P)"
+  shows "finite {(d, c, a, b) | a b c d. d < (n :: nat) \<and> P c \<and> (a, b) \<in> A}"
+  using assms [[simproc add: finite_Collect]] by simp
+
+text \<open>Here is a more involved example:\<close>
+lemma
+  fixes n :: nat
+  assumes "finite A"
+  shows "finite {t. \<exists> a c. a \<in> A \<and> c < n \<and> t = (a,c)}"
+  using assms by simp
+
+text \<open>Here is an explanation of what is going on:\<close>
+lemma
+  fixes n :: nat
+  assumes "finite A"
+  shows "finite {t. \<exists> a c. a \<in> A \<and> c < n \<and> t = (a,c)}"
+  apply simp \<comment> \<open>First the simplifier applies some specific procedures for miniscoping\<close>
+  apply (subst finite_Collect_bounded_ex) \<comment> \<open>Now, the context rule comes in\<close>
+   apply (subst Collect_mem_eq, rule assms) \<comment> \<open>Solve first subgoal\<close>
+
+  supply [simp del] = finite_Collect_bounded_ex
+  apply(intro allI impI)
+    \<comment> \<open>The simplifier walks down the propositional connectives using congruence rules\<close>
+  apply (subst finite_Collect_bounded_ex) \<comment> \<open>Another application of the congruence rule\<close>
+  apply (rule finite_Collect_less_nat) \<comment> \<open>Solve first subgoal\<close>
+  apply (simp only: singleton_conv) \<comment> \<open>Rewrite to singleton set\<close>
+  apply simp \<comment> \<open>The rest is trivial\<close>
+  done
 
 
 section \<open>Further Pointers\<close>
