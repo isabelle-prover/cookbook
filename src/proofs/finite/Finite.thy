@@ -2,6 +2,38 @@ theory Finite
   imports Main
 begin
 
+section \<open>Lemmas For Proving Finiteness of Sets\<close>
+
+text \<open>In an Isar proof, these two are typically your silver bullets for proving the finiteness
+of sets:\<close>
+lemmas finite_helpers = finite_imageI finite_subset
+
+text \<open>Some more helpful lemmas:\<close>
+lemmas more_finite_helpers = finite_cartesian_product finite_vimageI finite_Un
+
+\<comment> \<open>Example:\<close>
+lemma
+  "finite {x + y | x y :: nat. x < n \<and> y \<in> {0..3} \<and> x \<noteq> y}" (is "finite ?S")
+proof -
+  have "?S \<subseteq> (\<lambda>(x, y). x + y) ` ({0..<n} \<times> {0..3})"
+    by auto
+  also have "finite \<dots>"
+    \<comment> \<open>This is just to show what is going on: \<open>by simp\<close> would also do the job.\<close>
+    by (intro finite_imageI finite_cartesian_product finite_atLeastLessThan finite_atLeastAtMost)
+  finally (finite_subset) show ?thesis .
+    \<comment> \<open>Instead of giving @{thm finite_subset} explicitly, we could also have declared it like this:
+        \<^verbatim>\<open>lemmas [trans] = finite_subset\<close>.\<close>
+qed
+
+text \<open>
+  For automated proofs, it can often help to just pass these with the \<^verbatim>\<open>intro\<close> modifier
+  to @{method auto} and friends.
+  The theorem @{thm finite_imageI} is set up as an default, but it can help to add \<^verbatim>\<open>intro!\<close>.
+  Have a look at the example of the end of the file, to see both theorems in action in an
+  automated proof.
+\<close>
+
+
 
 section \<open>Simproc \<^verbatim>\<open>finite_Collect\<close>\<close>
 text \<open>
@@ -15,16 +47,6 @@ lemma "finite (r\<inverse>) = finite r"
   unfolding converse_def conversep_iff using [[simproc add: finite_Collect]]
   apply simp \<comment> \<open>The set was rewritten to an application of @{term image}.\<close>
   by (auto elim: finite_imageD simp: inj_on_def)
-
-
-section \<open>Lemmas For Proving Finiteness of Sets\<close>
-text \<open>
-  For automated proofs, it can often help to just pass these with the \<^verbatim>\<open>intro\<close> modifier
-  to @{method auto} and friends.
-  The theorem @{thm finite_imageI} is set up as an default, but it can help to add \<^verbatim>\<open>intro!\<close>.
-  Have a look at the example of the end of the file, to see both theorems in action.
-\<close>
-lemmas finite_helpers = finite_imageI finite_subset
 
 
 section \<open>Tuning The Simplifier For Finiteness Proofs\<close>
