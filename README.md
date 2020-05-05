@@ -4,6 +4,7 @@ contributed by the community.
 
 ## Table of Contents
 - [Proofs](src/proofs): How to effectively write proofs for common proof obligations
+- [Commands](src/commands): Important Isabelle commands and tips on using them effectively.
 
 # TODO
 - Recipes for proving existential statements
