@@ -14,3 +14,4 @@ contributed by the community.
 - Difference between methods and tactics
 - Namespacing of operators and more with bundles
 - Function package tutorial
+- Isabelle/jEdit FAQ. For instance: how do I get symbols to display properly?
