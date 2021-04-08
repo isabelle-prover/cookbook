@@ -1,4 +1,4 @@
-theory Finite
+theory Finite_Sets
   imports Main
 begin
 

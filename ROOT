@@ -3,4 +3,6 @@ session Index = HOL +
   sessions
     "HOL-Library"
   theories
-    "src/proofs/finite/Finite"
+    "src/commands/Find"
+    "src/proofs/finite/Finite_Sets"
+    "src/proofs/methods/Chained_Facts"
