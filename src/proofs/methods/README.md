@@ -19,7 +19,7 @@ In the following, all methods only act on the first subgoal unless otherwise sta
 - `blast` is a Tableaux prover that is good at predicate logic and set theory. It can take claset modifiers like `intro`, `dest`, `elim`. It can occasionally solve goals involving equality, but generally handles equality rather poorly compared to methods that use the simplifier. However, for purely ‘logical’ goals that do not require rewriting, it can often be superior.
 - `fastforce` and `force` perform both classical proof search using the claset and rewriting using the simplifier. They differ in which heuristic the classical search uses.
 - `auto` is similar to `fastforce`/`force`, but does not try quite as hard. It also acts on *all* goals and never fails (unless it cannot do *anything*). It uses a variant of `blast` internally to close prove goals. Two numeric parameters can be used to steer auto's proof search:
-in `auto b d` (the defaults), `b` specifies the search depth of `blast` and `d` specifies the number of classical proof steps to be taken.
+in `auto b d`, `b` specifies the search depth of `blast` and `d` specifies the number of classical proof steps to be taken.
 The defaults are `b = 4` and `d = 2`, and typically it is more helpful to modify `d`—if one wants to use these modifiers at all.
 - `auto2` TODO
 
@@ -91,4 +91,3 @@ TODO
 - `approximation` proves inequalities on various real-valued functions using interval arithmetic. TODO link
 - `real_asymp` proves various asymptotic properties of concrete real-valued functions, such limits, ‘Big-O’, and asymptotic equivalence
 - `eval_winding` provides support for evaluating winding numbers of paths in the complex plane in many practically relevant cases TODO link AFP
-
