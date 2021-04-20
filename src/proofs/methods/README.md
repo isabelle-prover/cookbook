@@ -18,7 +18,9 @@ In the following, all methods only act on the first subgoal unless otherwise sta
 
 - `blast` is a Tableaux prover that is good at predicate logic and set theory. It can take claset modifiers like `intro`, `dest`, `elim`. It can occasionally solve goals involving equality, but generally handles equality rather poorly compared to methods that use the simplifier. However, for purely ‘logical’ goals that do not require rewriting, it can often be superior.
 - `fastforce` and `force` perform both classical proof search using the claset and rewriting using the simplifier. They differ in which heuristic the classical search uses.
-- `auto` is similar to `fastforce`/`force`, but does not try quite as hard. It also acts on *all* goals and does never fails (unless it cannot do *anything*).
+- `auto` is similar to `fastforce`/`force`, but does not try quite as hard. It also acts on *all* goals and never fails (unless it cannot do *anything*). It uses a variant of `blast` internally to close prove goals. Two numeric parameters can be used to steer auto's proof search:
+in `auto b d`, `b` specifies the search depth of `blast` and `d` specifies the number of classical proof steps to be taken.
+The defaults are `b = 4` and `d = 2`, and typically it is more helpful to modify `d`—if one wants to use these modifiers at all.
 - `auto2` TODO
 
 The following methods are a bit more specialised, but still useful in some cases:
@@ -45,13 +47,14 @@ If there is a goal that `auto` should be able to solve but somehow cannot, `forc
 
 - `assumption` solves the goal with one of the premises
 - `subst` performs single-step rewriting of the goal with a given equation. Optional arguments can be used to rewrite the premises instead, or to specify the position to rewrite.
-- `rewrite` is essentially a more powerful version of `subst`.
-- `rule` performs a single resolution step (it ‘applies’ a rule to the current goal, backward reasoning)
+- `rewrite` is essentially a more powerful version of `subst`. It allows one to use term patterns to specify the position where the rewriting should be applied. It needs to be imported from `HOL-Library.Rewrite`.
+- `rule` performs a single resolution step (it ‘applies’ a rule to the current goal, reasoning backwards)
 - `drule` and `frule` peform a single step of foward reasoning (they ‘apply’ a rule to one of the premises, yielding a new premise). The difference is that `drule` deletes the premise that is being transformed, whereas `frule` does not.
-- `erule` applies resolution of a rule with the goal and with one of the premises being consumed by the first assumption of the rule. An optional numeric argument can be used to consume more than one premise. It is more or less equivalent to `rule, assumption`. This is often useful for elimination rules (e.g. case distinctions).
+- `erule` applies resolution of a rule with the goal and with one of the premises being consumed by the first assumption of the rule. An optional numeric argument can be used to consume more than one premise. It is more or less equivalent to `rule, assumption`. This is often useful for elimination rules (e.g. case analyses or rules written in the `fixes ... assume ... obtains ...` format).
 - `intro` applies resolution with the given rules repeatedly.
 - `elim` applies elimination with the given rules repeatedly.
 - `safe` applies safe rules from the claset only. This is typically used to split conjunctions in goals with several subgoals, or to split conjunctions in the assumptions by several assumptions, or to prove set equivalence by proving membership in both directions. However, sometimes it can do a bit too much (e.g. `x ∈ {a}` becomes `x ∉ {} ⟹ x = a`). In those cases, using the `intro`/`elim` methods by hand is preferable.
+- `clarsimp` is similar to `safe` but also invokes the `simplifier`. You can think of it as a less aggressive version of `auto`.
 - `clarify` TODO: What does clarify do precisely
 
 All of these except `drule`, `frule`, `erule` are often useful even in high-level proofs, especially when used as the first step of a proof. They are often used as the initial proof method, and the goals they produce are then ‘finished off’ using e.g. `auto`.
@@ -88,4 +91,3 @@ TODO
 - `approximation` proves inequalities on various real-valued functions using interval arithmetic. TODO link
 - `real_asymp` proves various asymptotic properties of concrete real-valued functions, such limits, ‘Big-O’, and asymptotic equivalence
 - `eval_winding` provides support for evaluating winding numbers of paths in the complex plane in many practically relevant cases TODO link AFP
-
