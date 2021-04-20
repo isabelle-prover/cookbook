@@ -47,7 +47,7 @@ If there is a goal that `auto` should be able to solve but somehow cannot, `forc
 
 - `assumption` solves the goal with one of the premises
 - `subst` performs single-step rewriting of the goal with a given equation. Optional arguments can be used to rewrite the premises instead, or to specify the position to rewrite.
-- `rewrite` is essentially a more powerful version of `subst`. It allows one to use term patterns to specify the position where the rewriting should be applied. Needs to be imported from `HOL-Library.Rewrite`.
+- `rewrite` is essentially a more powerful version of `subst`. It allows one to use term patterns to specify the position where the rewriting should be applied. It needs to be imported from `HOL-Library.Rewrite`.
 - `rule` performs a single resolution step (it ‘applies’ a rule to the current goal, reasoning backward)
 - `drule` and `frule` peform a single step of foward reasoning (they ‘apply’ a rule to one of the premises, yielding a new premise). The difference is that `drule` deletes the premise that is being transformed, whereas `frule` does not.
 - `erule` applies resolution of a rule with the goal and with one of the premises being consumed by the first assumption of the rule. An optional numeric argument can be used to consume more than one premise. It is more or less equivalent to `rule, assumption`. This is often useful for elimination rules (e.g. case analyses, rules written in the `fixes ... assume ... obtains ...` format, ...).
