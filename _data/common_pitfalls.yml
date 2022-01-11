@@ -1,0 +1,20 @@
+- title: Misleading variable naming in set comprehension
+  explanation: |
+    **Problem:** The expression
+
+    ```
+    {(v, v). v ∈ {''a'', ''b''}}
+    ```
+    
+    is actually interpreted as
+
+    ```
+    {(va ∷ 'a, v ∷ char list). v ∈ {''a'', ''b''}}
+    ```
+
+    **Fix**: Write
+
+    ```
+    {(v, v) | v. v ∈ {''a'', ''b''}}
+    ```
+

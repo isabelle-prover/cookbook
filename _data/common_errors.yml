@@ -1,0 +1,34 @@
+- error_msg: >
+    exception TYPE raised (line XXX of "envir.ML"): expand_atom: ill-typed replacement
+  explanation: |
+    This error can occur if you bind and use a pattern in a lemma statement, e.g.
+
+    ```
+    lemma assumes "P foo" (is "P ?bar") shows "Q ?bar"
+    ```
+
+    This is due to the fact that parsing and type inference for the whole lemma statement is done at once.
+
+    **Fix:**
+    Sufficiently verbose type annotations might help, e.g.
+
+    ```
+    lemma assumes "P (foo ::'a)" (is "P ?bar") shows "Q (?bar :: 'a)"
+    ```
+- error_msg: >
+    Bad Name: "t :: T"
+  explanation: |
+    When typing a definition and using type annotations at the wrong position, as in:
+
+    ```
+    definition "a :: bool" where "a ≡ False"
+    ```
+    
+    Isabelle returns `Bad name: "a :: bool"`.
+
+    **Fix:** use type annotations in the `where` clause instead:
+    
+    ```
+    definition "a" where "a :: bool ≡ False"
+    ```
+
