@@ -1,5 +1,5 @@
 # Cookbook
-This repository is a collection useful tips/tricks/hints for [Isabelle](https://isabelle.in.tum.de/) users contributed by the community.
+This repository is a collection of useful tips/tricks/hints for [Isabelle](https://isabelle.in.tum.de/) users contributed by the community.
 It is in an early stage &ndash; please contribute [here](https://github.com/isabelle-prover/cookbook).
 
 ## Table of Contents
