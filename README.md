@@ -1,5 +1,6 @@
 # Cookbook
 This repository is a collection useful tips/tricks/hints for Isabelle users contributed by the community.
+It is in an early stage &ndash; please contribute [here](https://github.com/isabelle-prover/cookbook).
 
 ## Table of Contents
 - [Commands](src/commands): important Isabelle commands and tips on how to use them effectively
