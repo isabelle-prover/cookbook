@@ -7,14 +7,16 @@ Moreover, it talks about the behaviour of the methods `intro/elim`, `rule/erule`
 Below, you can find a list of methods and their description.
 In the following, all methods only act on the first subgoal unless otherwise stated and fail if they cannot solve the goal, unless stated otherwise.
 
-## General-purpose automation
+## General-Purpose Automation
 
 ### Simplifier
 
 - `simp` rewrites the goal using the simplifier (for more information, refer to the cookbook section on the simplifier). This method never fails except when it cannot perform any simplification at all.
 - `simp_all` is like `simp`, but acts on *all* goals
 
-### Classical automation
+You can find a list of useful simpsets [here](/src/proofs/lemma_collections).
+
+### Classical Automation
 
 - `blast` is a Tableaux prover that is good at predicate logic and set theory. It can take claset modifiers like `intro`, `dest`, `elim`. It can occasionally solve goals involving equality, but generally handles equality rather poorly compared to methods that use the simplifier. However, for purely ‘logical’ goals that do not require rewriting, it can often be superior.
 - `fastforce` and `force` perform both classical proof search using the claset and rewriting using the simplifier. They differ in which heuristic the classical search uses.
@@ -30,7 +32,7 @@ The following methods are a bit more specialised, but still useful in some cases
 - `satx` uses an external proof-producing SAT solver, replaying its proof in Isabelle
 - `argo` is a prover for propositional logic with equality and linear arithmetic
 
-### Less relevant methods
+### Less Relevant Methods
 
 The following methods are not used much these days and you can probably safely ignore them:
 
@@ -43,7 +45,7 @@ The most widely used and useful methods are `simp`/`simp_all` and `auto`. Since 
 
 If there is a goal that `auto` should be able to solve but somehow cannot, `force` often works because it tries a bit harder. Despite its name, `fastforce` is usually not really faster than `force`. Which of them is better in any given case seems to be quite random, and it usually does not matter.
 
-## One-step methods
+## One-Step Methods
 
 - `assumption` solves the goal with one of the premises
 - `subst` performs single-step rewriting of the goal with a given equation. Optional arguments can be used to rewrite the premises instead, or to specify the position to rewrite.
@@ -63,7 +65,7 @@ All of these except `drule`, `frule`, `erule` are often useful even in high-leve
 
 TODO
 
-## Special-purpose automation
+## Special-Purpose Automation
 
 ### Termination
 
