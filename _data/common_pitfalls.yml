@@ -17,4 +17,29 @@
     ```
     {(v, v) | v. v ∈ {''a'', ''b''}}
     ```
+- title: The simplifier does not apply my rule
+  explanation: |
+    Most commonly this is a typing problem.
+    The rule you want to apply may require a more special (or just plain different) type from what you have in the current goal.
+    Use `declare [[show_types, show_sorts]]` to display types and sorts, and then check whether the types in your rule and your goal match up.
+- title: What is the difference between the ⇒, ⟹ , and ⟶ arrows?
+  explanation: |
+    Isabelle uses the `⇒` arrow for the function type (contrary to most functional languages which use `->`).
+    So `a ⇒ b` is the type of a function that takes an element of type `a` as input and gives you an element of type `b` as output.
+    
+    The long arrows ⟶ and ⟹  are object and meta level implication, respectively.
+    Roughly speaking, meta level implication should be used to separate the assumptions from the conclusion in statements.
+    Whenever you need an implication inside a closed HOL formula, use ⟶.
+- title: Where do I have to put double quotes?
+  explanation: |
+    Isabelle distinguishes between *inner* and *outer* syntax.
+    The outer syntax comes from the Isabelle framework,
+    the inner syntax is the one in between quotation marks and comes from the object logic (in this case HOL).
+    With time the distinction between the two becomes obvious,
+    but in the beginning the following rules of thumb may work:
+      
+    Types should be inside quotation marks, formulas and lemmas should be inside quotation marks,
+    rules and equations (e.g. for definitions) should be inside quotation marks,
+    commands like `lemma`, `definition`, `primrec`, `inductive`, `apply`, `fun`, `done` are without quotation marks,
+    as are the names of constants in constant definitions (`consts`)
 

@@ -2,6 +2,8 @@
 This repository is a collection of useful tips/tricks/hints for [Isabelle](https://isabelle.in.tum.de/) users contributed by the community.
 It is in an early stage &ndash; please contribute [here](https://github.com/isabelle-prover/cookbook).
 
+Other useful resources can be found on [isabelle.systems](https://isabelle.systems#resources).
+
 ## Table of Contents
 - [Commands](src/commands): important Isabelle commands and tips on how to use them effectively
 - [Common Errors](src/common_errors): common errors and how to fix them
@@ -15,6 +17,7 @@ It is in an early stage &ndash; please contribute [here](https://github.com/isab
 - Move material from [https://isabelle.in.tum.de/community/](https://isabelle.in.tum.de/community/)
 - Recipes for proving existential statements
 - Primer on conversions
+- Latex tips
 - Debugging ML code (`print_tac`, `print` antiquotation, debugger etc.)
 - Overview of different tactics (should also include `rewrite` etc.)
 - Difference between methods and tactics
