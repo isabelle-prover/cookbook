@@ -1,5 +1,5 @@
 # Cookbook
-This repository is a collection useful tips/tricks/hints for Isabelle users contributed by the community.
+This repository is a collection useful tips/tricks/hints for [Isabelle](https://isabelle.in.tum.de/) users contributed by the community.
 It is in an early stage &ndash; please contribute [here](https://github.com/isabelle-prover/cookbook).
 
 ## Table of Contents
@@ -8,8 +8,9 @@ It is in an early stage &ndash; please contribute [here](https://github.com/isab
 - [Common Pitfalls](src/common_pitfalls): common pitfalls and how to avoid them
 - [General](src/general): general tips to get started with Isabelle
 - [Proofs](src/proofs): how to effectively write proofs for common proof obligations
+- [Searching Isabelle](src/searching_isabelle): how to search Isabelle and the AFP.
 
-# TODO
+## TODO
 - Add CI and html output for linked theory files (cf current Makefile)
 - Move material from [https://isabelle.in.tum.de/community/](https://isabelle.in.tum.de/community/)
 - Recipes for proving existential statements
