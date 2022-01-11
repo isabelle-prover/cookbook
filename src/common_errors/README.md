@@ -8,11 +8,10 @@
   <code>{{ item.error_msg }}</code>
   </summary>
 
-  {{ item.explanation | markdownify }}
+  {{ item.explanation }}
 
 </details>
 </li>
 {% endfor %}
 </ol>
 
-<!-- Bad name: "a :: bool" -->

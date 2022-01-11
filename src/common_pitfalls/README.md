@@ -6,7 +6,7 @@
 <details>
   <summary>{{ item.title }}</summary>
 
-  {{ item.explanation | markdownify }}
+  {{ item.explanation }}
 
 </details>
 </li>

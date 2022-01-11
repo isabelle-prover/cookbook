@@ -31,4 +31,21 @@
     ```
     definition "a" where "a :: bool ≡ False"
     ```
+- error_msg: >
+    Not an equation | Not a meta-equality (≡)
+  explanation: |
+    Most commonly, these errors occur because Isabelle's equality `=` binds relatively strongly.
+    For example
+
+    ```
+    definition d where "d b = b ∧ False"
+
+    fun f where "f b = b ∧ False"
+    ```
+
+    lead both to above error.
+    Isabelle parses the term `t b = b ∧ False` as `(t b = b) ∧ False` and not `t b = (b ∧ False)`.
+
+    **Fix:**
+    Explicitly set the parentheses, e.g. `t b = (b ∧ False)`
 
