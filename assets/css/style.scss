@@ -1,0 +1,25 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+@media print, screen and (min-width: 960px) {
+
+  .wrapper {
+    width: auto;
+    max-width: 1200px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+  }
+
+  header, footer {
+    position: inherit;
+    width: 20%;
+  }
+
+  section {
+    position: inherit;
+    width: 75%;
+  }
+}

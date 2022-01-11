@@ -82,3 +82,5 @@ text \<open>
   Finally, type variables can also have class constraints.
 \<close>
 find_consts "('a::ord) list \<Rightarrow> ('a::ord) list"
+
+end
