@@ -13,4 +13,3 @@
 {% endfor %}
 </ol>
 
-<!-- Bad name: "a :: bool" -->
