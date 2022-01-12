@@ -12,6 +12,10 @@ Other useful resources can be found on [isabelle.systems](https://isabelle.syste
 - [Proofs](src/proofs): how to effectively write proofs for common proof obligations
 - [Searching Isabelle](src/searching_isabelle): how to search Isabelle and the AFP.
 
+## Build Site locally
+
+To build and view the website locally, see [here](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/testing-your-github-pages-site-locally-with-jekyll).
+
 ## TODO
 - Add CI and html output for linked theory files (cf current Makefile)
 - Move material from [https://isabelle.in.tum.de/community/](https://isabelle.in.tum.de/community/)
