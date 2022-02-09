@@ -14,7 +14,7 @@ In the following, all methods only act on the first subgoal unless otherwise sta
 - `simp` rewrites the goal using the simplifier (for more information, refer to the cookbook section on the simplifier). This method never fails except when it cannot perform any simplification at all.
 - `simp_all` is like `simp`, but acts on *all* goals
 
-You can find a list of useful simpsets [here](/src/proofs/lemma_collections).
+You can find a list of useful simpsets [here]({{ "/src/proofs/lemma_collections" | relative_url }}).
 
 ### Classical Automation
 

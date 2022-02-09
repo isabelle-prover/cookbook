@@ -18,7 +18,7 @@
         <!-- <h1><a href="{{ "/" | absolute_url }}">{{ site.title | default: site.github.repository_name }}</a></h1> -->
 
         {% if site.logo %}
-          <a href="/">
+          <a href="{{ "/" | relative_url}}">
             <img id="logo" src="{{site.logo | relative_url}}" alt="Logo" />
           </a>
         {% endif %}
@@ -48,8 +48,8 @@
       </section>
       <footer>
         <p>
-          Something missing? Something broken? Any questions? Create a <a href="https://github.com/isabelle-prover/cookbook">pull request or issue</a> to let us know.</br>
-          <a href="/about/">About this website</a>
+        Something missing? Something broken? Any questions? Create a <a href="{{ site.github.repository_url }}">pull request or issue</a> to let us know.</br>
+          <a href="{{ "/about/" | relative_url}}">About this website</a>
         </p>
         <!-- {% if site.github.is_project_page %} -->
         <!-- <p>This project is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a></p> -->

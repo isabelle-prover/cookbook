@@ -1,7 +1,7 @@
 # Isabelle Community Cookbook
 
 This website contains a collection of useful tips/tricks/hints for [Isabelle](https://isabelle.in.tum.de/) users contributed by the community.
-It is in an early stage &ndash; please contribute [here](https://github.com/isabelle-prover/cookbook).
+It is in an early stage &ndash; please contribute [here]({{ site.github.repository_url }}).
 
 Other useful resources can be found on [isabelle.systems](https://isabelle.systems#resources).
 
