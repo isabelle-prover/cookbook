@@ -1,6 +1,15 @@
 # Isabelle Community Cookbook
 
-This repository is a collection of useful tips/tricks/hints for [Isabelle](https://isabelle.in.tum.de/) users contributed by the community.
+## What is this?
+
+This repository contains the resources for the [isabelle community cookbook](https://isabelle.systems/cookbook).
+The cookbook contains a collection of useful tips/tricks/hints
+for Isabelle users.
+
+## How to contribute
+
+If you want to add/udpdate an entry, simply add/edit the corresponding entry in the corresponding directory and create a pull request.
+If you need help, simply create an [issue](https://github.com/isabelle-prover/cookbook/issues).
 
 ## Build Site locally
 

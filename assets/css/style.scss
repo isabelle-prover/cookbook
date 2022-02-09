@@ -3,6 +3,30 @@
 
 @import "{{ site.theme }}";
 
+$space-baseline: 16px;
+
+#logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 125px;
+}
+
+body, header {
+  background-image: none;
+  background-color: white;
+  margin: 0;
+}
+
+body {
+  padding: $space-baseline;
+}
+
+header {
+  padding: 0;
+  padding-bottom: $space-baseline;
+}
+
 @media print, screen and (min-width: 960px) {
 
   .wrapper {
