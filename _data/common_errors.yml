@@ -49,3 +49,32 @@
     **Fix:**
     Explicitly set the parentheses, e.g. `t b = (b ∧ False)`
 
+- error_msg: >
+    Local statement fails to refine any pending goal
+    Failed attempt to solve goal by exported rule: P (f None)
+explanation: |
+    When attempting to prove the necessary assumptions for the instantiation of a class, Isabelle can fail to infer the correct type.
+    Assume there is a class `C`:
+    ```
+    class C fixes f :: "'a option => 'a"
+    assumes "P (f (Some a))" and "P (f None)"
+    ```
+    When instantiating the class for an arbitrary type `ty`, one goal is: `P (f None)`.
+    ```
+    instantiation ty::C begin
+    ...
+    instance proof
+        show "P (f None)" sorry
+    ...
+    qed
+    end
+    ```
+    Isabelle fails to infer the type of `f` as `ty option => ty` and thus fails to refine a goal.
+
+    **Fix:** add a type annotation:
+    ```
+    ...
+        show "P (f (None::(ty option)))" sorry
+    ...
+    ```
+
