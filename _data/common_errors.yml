@@ -61,7 +61,7 @@ explanation: |
     fixes f :: "'a option ⇒ 'a option"
     assumes "f None = None"
     ```
-    When instantiating the class for an arbitrary type `ty`, one goal is: `P (f None)`.
+    When instantiating the class for an arbitrary type `ty`, e.g. `int`, one goal is: `f None = None`.
     ```
     instantiation ty::C begin
     ...
