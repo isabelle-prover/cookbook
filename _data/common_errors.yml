@@ -69,9 +69,9 @@ explanation: |
     qed
     end
     ```
-    Isabelle fails to infer the type of `f` as `ty option => ty` and thus fails to refine a goal.
+    Isabelle does not infer the right type for `f` (since `f` may refer to another instantiation of `C`).
 
-    **Fix:** add a type annotation:
+    **Fix:** Add a type annotation. For example:
     ```
         show "f None = (None :: int option)" sorry
     ```
