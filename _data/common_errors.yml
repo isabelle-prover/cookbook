@@ -49,3 +49,32 @@
     **Fix:**
     Explicitly set the parentheses, e.g. `t b = (b ∧ False)`
 
+- error_msg: >
+    (in an instantiation proof)
+    Failed to refine any pending goal 
+    Local statement fails to refine any pending goal
+explanation: |
+    When attempting to prove the necessary assumptions for the instantiation of a class, Isabelle may not infer the correct type.
+    Assume there is a class `C`:
+    ```
+    class C =
+    fixes f :: "'a option ⇒ 'a option"
+    assumes "f None = None"
+    ```
+    When instantiating the class for an arbitrary type `ty`, e.g. `int`, one goal is: `f None = None`.
+    ```
+  instantiation int :: C 
+  begin
+  definition "f_int (x :: int option) ≡ (None :: int option)" (*arbitrary definition*)
+  instance proof
+    show "f None = None" sorry
+  qed
+  end
+    ```
+    Isabelle does not infer the right type for `f` (since `f` may refer to another instantiation of `C`).
+
+    **Fix:** Add a type annotation. For example:
+    ```
+        show "f None = (None :: int option)" sorry
+    ```
+
