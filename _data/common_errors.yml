@@ -50,8 +50,9 @@
     Explicitly set the parentheses, e.g. `t b = (b ∧ False)`
 
 - error_msg: >
+    (in an instantiation proof)
+    Failed to refine any pending goal 
     Local statement fails to refine any pending goal
-    Failed attempt to solve goal by exported rule: P (f None)
 explanation: |
     When attempting to prove the necessary assumptions for the instantiation of a class, Isabelle can fail to infer the correct type.
     Assume there is a class `C`:
