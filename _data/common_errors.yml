@@ -54,7 +54,7 @@
     Failed to refine any pending goal 
     Local statement fails to refine any pending goal
 explanation: |
-    When attempting to prove the necessary assumptions for the instantiation of a class, Isabelle can fail to infer the correct type.
+    When attempting to prove the necessary assumptions for the instantiation of a class, Isabelle may not infer the correct type.
     Assume there is a class `C`:
     ```
     class C fixes f :: "'a option => 'a"
