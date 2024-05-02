@@ -63,13 +63,13 @@ explanation: |
     ```
     When instantiating the class for an arbitrary type `ty`, e.g. `int`, one goal is: `f None = None`.
     ```
-    instantiation ty::C begin
-    ...
-    instance proof
-        show "P (f None)" sorry
-    ...
-    qed
-    end
+  instantiation int :: C 
+  begin
+  definition "f_int (x :: int option) ≡ (None :: int option)" (*arbitrary definition*)
+  instance proof
+    show "f None = None" sorry
+  qed
+  end
     ```
     Isabelle does not infer the right type for `f` (since `f` may refer to another instantiation of `C`).
 
