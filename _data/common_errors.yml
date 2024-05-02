@@ -51,8 +51,8 @@
 
 - error_msg: >
     (in an instantiation proof)
-    Failed to refine any pending goal 
-    Local statement fails to refine any pending goal
+    Failed to refine any pending goal. 
+    Local statement fails to refine any pending goal.
   explanation: |
     When attempting to prove the necessary assumptions for the instantiation of a class, Isabelle may not infer the correct type.
     Assume there is a class `C`:
@@ -61,7 +61,7 @@
     fixes f :: "'a option ⇒ 'a option"
     assumes "f None = None"
     ```
-    When instantiating the class for an arbitrary type `ty`, e.g. `int`, one goal is: `f None = None`.
+    When instantiating the class for an arbitrary type, e.g. `int`, one goal is: `f None = None`.
     ```
     instantiation int :: C 
     begin
