@@ -73,8 +73,6 @@ explanation: |
 
     **Fix:** add a type annotation:
     ```
-    ...
-        show "P (f (None::(ty option)))" sorry
-    ...
+        show "f None = (None :: int option)" sorry
     ```
 
